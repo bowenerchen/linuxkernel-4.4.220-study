@@ -1,6 +1,8 @@
 #
 # Automatically generated file; DO NOT EDIT.
 # Linux/x86 4.4.220 Kernel Configuration
+# 
+# Modified by bowenerchen
 #
 CONFIG_64BIT=y
 CONFIG_X86_64=y

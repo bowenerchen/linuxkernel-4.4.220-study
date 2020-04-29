@@ -3,6 +3,11 @@ PATCHLEVEL = 4
 SUBLEVEL = 220
 EXTRAVERSION =
 NAME = Blurry Fish Butt
+#VERSION = 0
+#PATCHLEVEL = 0
+#SUBLEVEL = 1
+#EXTRAVERSION = 1
+#NAME = bowenerchen
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
@@ -126,6 +131,7 @@ endif
 # That's our default target when none is given on the command line
 PHONY := _all
 _all:
+	cp ./.config .config-bak-$(date)
 
 # Cancel implicit rules on top Makefile
 $(CURDIR)/Makefile Makefile: ;
