@@ -131,7 +131,6 @@ endif
 # That's our default target when none is given on the command line
 PHONY := _all
 _all:
-	cp ./.config .config-bak-$(date)
 
 # Cancel implicit rules on top Makefile
 $(CURDIR)/Makefile Makefile: ;
