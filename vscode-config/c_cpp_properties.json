@@ -1,0 +1,54 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": [
+                "__GNUC__",
+                "__KERNEL__",
+                "__LINUX_KCONFIG_",
+                "CONFIG_AS_CFI=1",
+                "CONFIG_AS_CFI_SIGNAL_FRAME=1",
+                "CONFIG_AS_CFI_SECTIONS=1",
+                "CONFIG_AS_SSSE3=1",
+                "CONFIG_AS_AVX=1",
+                "CONFIG_AS_AVX2=1",
+                "CONFIG_AS_AVX512=1",
+                "CONFIG_AS_SHA1_NI=1",
+                "CONFIG_AS_SHA256_NI=1",
+                "CONFIG_AS_ADX=1"
+            ],
+            "compilerPath": "/home/mygcc/bin/gcc",
+            "includePath": [
+                "${workspaceFolder}/include/",
+                "${workspaceFolder}/include/uapi/",
+                "${workspaceFolder}/include/generated/uapi/",
+                "${workspaceFolder}/arch/x86/include/",
+                "${workspaceFolder}/arch/x86/include/uapi",
+                "${workspaceFolder}/arch/x86/include/generated/",
+                "${workspaceFolder}/arch/x86/include/generated/uapi",
+                "/home/mygcc/lib/gcc/x86_64-redhat-linux/9.2.0/include",
+                "/usr/local/include",
+                "/home/mygcc/include",
+                "/home/mygcc/lib/gcc/x86_64-redhat-linux/9.2.0/include-fixed",
+                "/usr/include",
+                "/home/mygcc/lib/gcc/x86_64-redhat-linux/9.2.0/../../../../include/c++/9.2.0",
+                "/home/mygcc/lib/gcc/x86_64-redhat-linux/9.2.0/../../../../include/c++/9.2.0/x86_64-redhat-linux",
+                "/home/mygcc/lib/gcc/x86_64-redhat-linux/9.2.0/../../../../include/c++/9.2.0/backward",
+                "/home/mygcc/lib/gcc/x86_64-redhat-linux/9.2.0/include"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64",
+            "forcedInclude": [
+                "${workspaceFolder}/include/linux/kconfig.h",
+                "${workspaceFolder}/include/linux/compiler-clang.h",
+                "${workspaceFolder}/include/linux/compiler-gcc.h",
+                "${workspaceFolder}/include/linux/compiler.h",
+                "${workspaceFolder}/include/linux/compiler-intel.h",
+                "${workspaceFolder}/include/linux/intel-iommu.h"
+            ],
+            "compileCommands": "/home/bowenerchen/linux-4.4.220/compile_commands.json"
+        }
+    ],
+    "version": 4
+}
