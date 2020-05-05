@@ -74,7 +74,7 @@
         "**/.get_maintainer.ignore": true,
         "**/.tmp_vmlinux1": true,
         "**/.tmp_vmlinux2": true,
-        "**/vmlinux":true,
+        "**/vmlinux": true,
         "**/x509.genkey": true
     },
     "files.associations": {
@@ -82,4 +82,5 @@
     },
     "C_Cpp.formatting": "Default",
     "go.inferGopath": false,
+    "go.useLanguageServer": false
 }
