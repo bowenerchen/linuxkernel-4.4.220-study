@@ -107,6 +107,8 @@ signing_key.pem
 signing_key.priv
 signing_key.x509
 x509.genkey
+compile_commands.json
+
 
 # Kconfig presets
 all.config
