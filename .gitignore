@@ -108,6 +108,14 @@ signing_key.priv
 signing_key.x509
 x509.genkey
 compile_commands.json
+arch/arm/*
+arch/arm64/*
+arch/cris/*
+arch/metag/*
+arch/mips/*
+arch/powerpc/*
+include/dt-bindings/*
+tools/testing/*
 
 
 # Kconfig presets
