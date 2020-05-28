@@ -34,29 +34,29 @@ struct ctl_table_root;
 struct ctl_table_header;
 struct ctl_dir;
 
-typedef int proc_handler (struct ctl_table *ctl, int write,
-			  void __user *buffer, size_t *lenp, loff_t *ppos);
+typedef int proc_handler(struct ctl_table *ctl, int write,
+						 void __user *buffer, size_t *lenp, loff_t *ppos);
 
 extern int proc_dostring(struct ctl_table *, int,
-			 void __user *, size_t *, loff_t *);
+						 void __user *, size_t *, loff_t *);
 extern int proc_dointvec(struct ctl_table *, int,
-			 void __user *, size_t *, loff_t *);
+						 void __user *, size_t *, loff_t *);
 extern int proc_douintvec(struct ctl_table *, int,
-			 void __user *, size_t *, loff_t *);
+						  void __user *, size_t *, loff_t *);
 extern int proc_dointvec_minmax(struct ctl_table *, int,
-				void __user *, size_t *, loff_t *);
+								void __user *, size_t *, loff_t *);
 extern int proc_dointvec_jiffies(struct ctl_table *, int,
-				 void __user *, size_t *, loff_t *);
+								 void __user *, size_t *, loff_t *);
 extern int proc_dointvec_userhz_jiffies(struct ctl_table *, int,
-					void __user *, size_t *, loff_t *);
+										void __user *, size_t *, loff_t *);
 extern int proc_dointvec_ms_jiffies(struct ctl_table *, int,
-				    void __user *, size_t *, loff_t *);
+									void __user *, size_t *, loff_t *);
 extern int proc_doulongvec_minmax(struct ctl_table *, int,
-				  void __user *, size_t *, loff_t *);
+								  void __user *, size_t *, loff_t *);
 extern int proc_doulongvec_ms_jiffies_minmax(struct ctl_table *table, int,
-				      void __user *, size_t *, loff_t *);
+											 void __user *, size_t *, loff_t *);
 extern int proc_do_large_bitmap(struct ctl_table *, int,
-				void __user *, size_t *, loff_t *);
+								void __user *, size_t *, loff_t *);
 
 /*
  * Register a set of sysctl names by calling register_sysctl_table
@@ -86,7 +86,8 @@ extern int proc_do_large_bitmap(struct ctl_table *, int,
  */
 
 /* Support for userspace poll() to watch for changes */
-struct ctl_table_poll {
+struct ctl_table_poll
+{
 	atomic_t event;
 	wait_queue_head_t wait;
 };
@@ -96,28 +97,31 @@ static inline void *proc_sys_poll_event(struct ctl_table_poll *poll)
 	return (void *)(unsigned long)atomic_read(&poll->event);
 }
 
-#define __CTL_TABLE_POLL_INITIALIZER(name) {				\
-	.event = ATOMIC_INIT(0),					\
-	.wait = __WAIT_QUEUE_HEAD_INITIALIZER(name.wait) }
+#define __CTL_TABLE_POLL_INITIALIZER(name)               \
+	{                                                    \
+		.event = ATOMIC_INIT(0),                         \
+		.wait = __WAIT_QUEUE_HEAD_INITIALIZER(name.wait) \
+	}
 
-#define DEFINE_CTL_TABLE_POLL(name)					\
+#define DEFINE_CTL_TABLE_POLL(name) \
 	struct ctl_table_poll name = __CTL_TABLE_POLL_INITIALIZER(name)
 
 /* A sysctl table is an array of struct ctl_table: */
-struct ctl_table 
+struct ctl_table
 {
-	const char *procname;		/* Text ID for /proc/sys, or zero */
-	void *data;
-	int maxlen;
-	umode_t mode;
-	struct ctl_table *child;	/* Deprecated */
-	proc_handler *proc_handler;	/* Callback for text formatting */
+	const char *procname;		/* Text ID for /proc/sys, or zero, 表示在proc/sys/下显示的文件名称 */
+	void *data;					/* 表示对应于内核中的变量名称 */
+	int maxlen;					/* 表示条目允许的最大长度 */
+	umode_t mode;				/* 条目在proc文件系统下的访问权限 */
+	struct ctl_table *child;	/* Deprecated 不建议使用这个字段，弃用 */
+	proc_handler *proc_handler; /* Callback for text formatting 回调函数, 整型内核变量设置为"&proc_dointvec", 字符串内核变量设置为"&proc_dostring" */
 	struct ctl_table_poll *poll;
-	void *extra1;
-	void *extra2;
+	void *extra1; /* 变量的最小值min */
+	void *extra2; /* 变量的最大值max */
 };
 
-struct ctl_node {
+struct ctl_node
+{
 	struct rb_node node;
 	struct ctl_table_header *header;
 };
@@ -127,7 +131,8 @@ struct ctl_node {
 struct ctl_table_header
 {
 	union {
-		struct {
+		struct
+		{
 			struct ctl_table *ctl_table;
 			int used;
 			int count;
@@ -143,26 +148,30 @@ struct ctl_table_header
 	struct ctl_node *node;
 };
 
-struct ctl_dir {
+struct ctl_dir
+{
 	/* Header must be at the start of ctl_dir */
 	struct ctl_table_header header;
 	struct rb_root root;
 };
 
-struct ctl_table_set {
+struct ctl_table_set
+{
 	int (*is_seen)(struct ctl_table_set *);
 	struct ctl_dir dir;
 };
 
-struct ctl_table_root {
+struct ctl_table_root
+{
 	struct ctl_table_set default_set;
 	struct ctl_table_set *(*lookup)(struct ctl_table_root *root,
-					   struct nsproxy *namespaces);
+									struct nsproxy *namespaces);
 	int (*permissions)(struct ctl_table_header *head, struct ctl_table *table);
 };
 
 /* struct ctl_path describes where in the hierarchy a table is added */
-struct ctl_path {
+struct ctl_path
+{
 	const char *procname;
 };
 
@@ -171,8 +180,8 @@ struct ctl_path {
 void proc_sys_poll_notify(struct ctl_table_poll *poll);
 
 extern void setup_sysctl_set(struct ctl_table_set *p,
-	struct ctl_table_root *root,
-	int (*is_seen)(struct ctl_table_set *));
+							 struct ctl_table_root *root,
+							 int (*is_seen)(struct ctl_table_set *));
 extern void retire_sysctl_set(struct ctl_table_set *set);
 
 void register_sysctl_root(struct ctl_table_root *root);
@@ -183,41 +192,41 @@ struct ctl_table_header *__register_sysctl_paths(
 	struct ctl_table_set *set,
 	const struct ctl_path *path, struct ctl_table *table);
 struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table);
-struct ctl_table_header *register_sysctl_table(struct ctl_table * table);
+struct ctl_table_header *register_sysctl_table(struct ctl_table *table);
 struct ctl_table_header *register_sysctl_paths(const struct ctl_path *path,
-						struct ctl_table *table);
+											   struct ctl_table *table);
 
-void unregister_sysctl_table(struct ctl_table_header * table);
+void unregister_sysctl_table(struct ctl_table_header *table);
 
 extern int sysctl_init(void);
 
 extern struct ctl_table sysctl_mount_point[];
 
 #else /* CONFIG_SYSCTL */
-static inline struct ctl_table_header *register_sysctl_table(struct ctl_table * table)
+static inline struct ctl_table_header *register_sysctl_table(struct ctl_table *table)
 {
 	return NULL;
 }
 
 static inline struct ctl_table_header *register_sysctl_paths(
-			const struct ctl_path *path, struct ctl_table *table)
+	const struct ctl_path *path, struct ctl_table *table)
 {
 	return NULL;
 }
 
-static inline void unregister_sysctl_table(struct ctl_table_header * table)
+static inline void unregister_sysctl_table(struct ctl_table_header *table)
 {
 }
 
 static inline void setup_sysctl_set(struct ctl_table_set *p,
-	struct ctl_table_root *root,
-	int (*is_seen)(struct ctl_table_set *))
+									struct ctl_table_root *root,
+									int (*is_seen)(struct ctl_table_set *))
 {
 }
 
 #endif /* CONFIG_SYSCTL */
 
 int sysctl_max_threads(struct ctl_table *table, int write,
-		       void __user *buffer, size_t *lenp, loff_t *ppos);
+					   void __user *buffer, size_t *lenp, loff_t *ppos);
 
 #endif /* _LINUX_SYSCTL_H */
