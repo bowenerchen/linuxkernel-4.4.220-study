@@ -75,12 +75,18 @@
         "**/.tmp_vmlinux1": true,
         "**/.tmp_vmlinux2": true,
         "**/vmlinux": true,
-        "**/x509.genkey": true
+        "**/x509.genkey": true,
+        "**/*.S": true,
+        "**/*.a": true,
+        "**/.clang-format": true,
+        "**/.cocciconfig": true,
+        "**/.git*": true,
+        "**/*.orig": true,
+        "**/*.rej": true
     },
     "files.associations": {
         "slab.h": "c"
     },
     "C_Cpp.formatting": "Default",
     "go.inferGopath": false,
-    "go.useLanguageServer": false
 }
