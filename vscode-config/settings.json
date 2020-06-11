@@ -76,7 +76,7 @@
         "**/.tmp_vmlinux2": true,
         "**/vmlinux": true,
         "**/x509.genkey": true,
-        "**/*.S": true,
+        "**/*.S": false,
         "**/*.a": true,
         "**/.clang-format": true,
         "**/.cocciconfig": true,

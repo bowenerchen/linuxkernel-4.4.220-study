@@ -31,15 +31,19 @@ static int proc_test_super(struct super_block *sb, void *data)
 static int proc_set_super(struct super_block *sb, void *data)
 {
 	int err = set_anon_super(sb, NULL);
-	if (!err) {
+	if (!err)
+	{
 		struct pid_namespace *ns = (struct pid_namespace *)data;
 		sb->s_fs_info = get_pid_ns(ns);
 	}
 	return err;
 }
 
-enum {
-	Opt_gid, Opt_hidepid, Opt_err,
+enum
+{
+	Opt_gid,
+	Opt_hidepid,
+	Opt_err,
 };
 
 static const match_table_t tokens = {
@@ -57,14 +61,16 @@ static int proc_parse_options(char *options, struct pid_namespace *pid)
 	if (!options)
 		return 1;
 
-	while ((p = strsep(&options, ",")) != NULL) {
+	while ((p = strsep(&options, ",")) != NULL)
+	{
 		int token;
 		if (!*p)
 			continue;
 
 		args[0].to = args[0].from = NULL;
 		token = match_token(p, tokens, args);
-		switch (token) {
+		switch (token)
+		{
 		case Opt_gid:
 			if (match_int(&args[0], &option))
 				return 0;
@@ -73,7 +79,8 @@ static int proc_parse_options(char *options, struct pid_namespace *pid)
 		case Opt_hidepid:
 			if (match_int(&args[0], &option))
 				return 0;
-			if (option < 0 || option > 2) {
+			if (option < 0 || option > 2)
+			{
 				pr_err("proc: hidepid value must be between 0 and 2.\n");
 				return 0;
 			}
@@ -81,7 +88,8 @@ static int proc_parse_options(char *options, struct pid_namespace *pid)
 			break;
 		default:
 			pr_err("proc: unrecognized mount option \"%s\" "
-			       "or missing value\n", p);
+				   "or missing value\n",
+				   p);
 			return 0;
 		}
 	}
@@ -98,17 +106,20 @@ int proc_remount(struct super_block *sb, int *flags, char *data)
 }
 
 static struct dentry *proc_mount(struct file_system_type *fs_type,
-	int flags, const char *dev_name, void *data)
+								 int flags, const char *dev_name, void *data)
 {
 	int err;
 	struct super_block *sb;
 	struct pid_namespace *ns;
 	char *options;
 
-	if (flags & MS_KERNMOUNT) {
+	if (flags & MS_KERNMOUNT)
+	{
 		ns = (struct pid_namespace *)data;
 		options = NULL;
-	} else {
+	}
+	else
+	{
 		ns = task_active_pid_ns(current);
 		options = data;
 
@@ -128,14 +139,17 @@ static struct dentry *proc_mount(struct file_system_type *fs_type,
 	 */
 	sb->s_stack_depth = FILESYSTEM_MAX_STACK_DEPTH;
 
-	if (!proc_parse_options(options, ns)) {
+	if (!proc_parse_options(options, ns))
+	{
 		deactivate_locked_super(sb);
 		return ERR_PTR(-EINVAL);
 	}
 
-	if (!sb->s_root) {
+	if (!sb->s_root)
+	{
 		err = proc_fill_super(sb);
-		if (err) {
+		if (err)
+		{
 			deactivate_locked_super(sb);
 			return ERR_PTR(err);
 		}
@@ -162,26 +176,26 @@ static void proc_kill_sb(struct super_block *sb)
 }
 
 static struct file_system_type proc_fs_type = {
-	.name		= "proc",
-	.mount		= proc_mount,
-	.kill_sb	= proc_kill_sb,
-	.fs_flags	= FS_USERNS_VISIBLE | FS_USERNS_MOUNT,
+	.name = "proc",
+	.mount = proc_mount,
+	.kill_sb = proc_kill_sb,
+	.fs_flags = FS_USERNS_VISIBLE | FS_USERNS_MOUNT,
 };
 
 void __init proc_root_init(void)
 {
 	int err;
 
-	proc_init_inodecache();
-	err = register_filesystem(&proc_fs_type);
+	proc_init_inodecache();					  /* 利用kmem_cache_create()创建proc_inode对象创建一个slab缓存 */
+	err = register_filesystem(&proc_fs_type); /* 将该文件系统正式地注册到内核。*/
 	if (err)
 		return;
 
-	proc_self_init();
-	proc_thread_self_init();
-	proc_symlink("mounts", NULL, "self/mounts");
+	proc_self_init();							 // 初始化 /proc/self，具体初始化逻辑不是很懂？？？
+	proc_thread_self_init();					 // 不懂具体在干嘛？？？
+	proc_symlink("mounts", NULL, "self/mounts"); // 将 /proc/mounts 链接到 /prof/self/mounts
 
-	proc_net_init();
+	proc_net_init(); // 将 /proc/net 链接到 /proc/self/net，建立网络相关文件
 
 #ifdef CONFIG_SYSVIPC
 	proc_mkdir("sysvipc", NULL);
@@ -193,30 +207,30 @@ void __init proc_root_init(void)
 	/* just give it a mountpoint */
 	proc_create_mount_point("openprom");
 #endif
-	proc_tty_init();
+	proc_tty_init(); // 初始化tty，建立tty相关文件
 	proc_mkdir("bus", NULL);
-	proc_sys_init();
+	proc_sys_init(); // 建立sysctl层次结构，即 /proc/sys/目录层次。sysctl信息导出到 /proc/sys/目录下。
 }
 
-static int proc_root_getattr(struct vfsmount *mnt, struct dentry *dentry, struct kstat *stat
-)
+static int proc_root_getattr(struct vfsmount *mnt, struct dentry *dentry, struct kstat *stat)
 {
 	generic_fillattr(d_inode(dentry), stat);
 	stat->nlink = proc_root.nlink + nr_processes();
 	return 0;
 }
 
-static struct dentry *proc_root_lookup(struct inode * dir, struct dentry * dentry, unsigned int flags)
+static struct dentry *proc_root_lookup(struct inode *dir, struct dentry *dentry, unsigned int flags)
 {
 	if (!proc_pid_lookup(dir, dentry, flags))
 		return NULL;
-	
+
 	return proc_lookup(dir, dentry, flags);
 }
 
 static int proc_root_readdir(struct file *file, struct dir_context *ctx)
 {
-	if (ctx->pos < FIRST_PROCESS_ENTRY) {
+	if (ctx->pos < FIRST_PROCESS_ENTRY)
+	{
 		int error = proc_readdir(file, ctx);
 		if (unlikely(error <= 0))
 			return error;
@@ -232,33 +246,33 @@ static int proc_root_readdir(struct file *file, struct dir_context *ctx)
  * directory handling functions for that..
  */
 static const struct file_operations proc_root_operations = {
-	.read		 = generic_read_dir,
-	.iterate	 = proc_root_readdir,
-	.llseek		= default_llseek,
+	.read = generic_read_dir,
+	.iterate = proc_root_readdir,
+	.llseek = default_llseek,
 };
 
 /*
  * proc root can do almost nothing..
  */
 static const struct inode_operations proc_root_inode_operations = {
-	.lookup		= proc_root_lookup,
-	.getattr	= proc_root_getattr,
+	.lookup = proc_root_lookup,
+	.getattr = proc_root_getattr,
 };
 
 /*
  * This is the root "inode" in the /proc tree..
  */
 struct proc_dir_entry proc_root = {
-	.low_ino	= PROC_ROOT_INO, 
-	.namelen	= 5, 
-	.mode		= S_IFDIR | S_IRUGO | S_IXUGO, 
-	.nlink		= 2, 
-	.count		= ATOMIC_INIT(1),
-	.proc_iops	= &proc_root_inode_operations, 
-	.proc_fops	= &proc_root_operations,
-	.parent		= &proc_root,
-	.subdir		= RB_ROOT,
-	.name		= "/proc",
+	.low_ino = PROC_ROOT_INO,
+	.namelen = 5,
+	.mode = S_IFDIR | S_IRUGO | S_IXUGO,
+	.nlink = 2,
+	.count = ATOMIC_INIT(1),
+	.proc_iops = &proc_root_inode_operations,
+	.proc_fops = &proc_root_operations,
+	.parent = &proc_root,
+	.subdir = RB_ROOT,
+	.name = "/proc",
 };
 
 int pid_ns_prepare_proc(struct pid_namespace *ns)
