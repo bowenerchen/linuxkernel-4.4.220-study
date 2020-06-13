@@ -659,18 +659,19 @@ struct sk_buff
 
 	/*
 	 * 在include/uapi/linux/if_packet.h中进行定义
-     *此字段根据l2的目的地址进行划分
-     *PACKET_HOST -- mac地址与接收设备mac地址相等，说明是发给该主机的
-     *PACKET_BROADCAST -- mac地址是接收设备的广播地址
-     *PACKET_MULTICAST -- mac地址接收改设备注册的多播地址之一
-     *PACKET_OTHERHOST -- mac地址不属于接收设备的地址，启用转发则转发，否则丢弃
-     *PACKET_OUTGOING -- 数据包将被发出，用到这个标记的功能包括decnet，或者为每个
-     *网络tab都复制一份发出包的函数
-     *PACKET_LOOPBACK -- 数据包发往回环设备，有此标识，处理回环设备时，
-     *可以跳过一些真实设备所需的操作
-     *PACKET_USER -- 发送到用户空间，netlink使用
-     *PACKET_KERNEL -- 发送到内核空间，netlink使用
-     *PACKET_FASTROUTE -- 未使用
+     * pkt_type字段根据l2的目的地址进行划分
+     * 0 -- PACKET_HOST -- mac地址与接收设备mac地址相等，说明是发给该主机的
+     * 1 -- PACKET_BROADCAST -- mac地址是接收设备的广播地址
+     * 2 -- PACKET_MULTICAST -- mac地址接收改设备注册的多播地址之一
+     * 3 -- PACKET_OTHERHOST -- mac地址不属于接收设备的地址，启用转发则转发，否则丢弃
+     * 4 -- PACKET_OUTGOING -- 数据包将被发出，用到这个标记的功能包括decnet，或者为每个
+     * 网络tab都复制一份发出包的函数
+     * 5 -- PACKET_LOOPBACK -- 数据包发往回环设备，有此标识，处理回环设备时，
+     * 可以跳过一些真实设备所需的操作
+     * 6 -- PACKET_USER -- 发送到用户空间，netlink使用
+     * 7 -- PACKET_KERNEL -- 发送到内核空间，netlink使用
+	 * Unused, PACKET_FASTROUTE and PACKET_LOOPBACK are invisible to user space
+     * 6 -- PACKET_FASTROUTE -- 未使用
      */
 	__u8 pkt_type : 3;
 	__u8 ignore_df : 1;
