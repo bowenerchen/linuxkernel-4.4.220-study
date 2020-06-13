@@ -575,10 +575,16 @@ struct sk_buff
 	};
 
 	union {
+		/* 
+         *指向缓冲区的套接字sock数据结构。当数据在本地产生或者正由本地进程接收时，
+         *该数据以及套接字相关信息会被L4(tcp或者udp)以及用户应用程序使用
+         *当缓冲区只是被转发时(本地机器不是来源也不是目的地)，该指针为NULL
+         */
 		struct sock *sk; // 指向拥有此缓冲的套接字sock结构体，即：宿主传输控制模块
 		int ip_defrag_offset;
 	};
 
+	/* 报文到达或者离开时的网络设备 */
 	struct net_device *dev; // 表示一个网络设备，当skb为输出/输入时，dev表示要输出/输入到的设备
 
 	/*
@@ -592,29 +598,44 @@ struct sk_buff
 	unsigned long _skb_refdst;				 // 主要用于路由子系统，保存路由有关的东西
 	void (*destructor)(struct sk_buff *skb); // 这是析构函数，后期在skb内存销毁时会用到
 #ifdef CONFIG_XFRM
-	struct sec_path *sp;
+	struct sec_path *sp; // ipsec xfrm框架，用于跟踪传输信息
 #endif
 #if defined(CONFIG_NF_CONNTRACK) || defined(CONFIG_NF_CONNTRACK_MODULE)
-	struct nf_conntrack *nfct;
+	struct nf_conntrack *nfct; //链接跟踪
 #endif
 #if IS_ENABLED(CONFIG_BRIDGE_NETFILTER)
-	struct nf_bridge_info *nf_bridge;
+	struct nf_bridge_info *nf_bridge; //桥接帧的相关信息
 #endif
+	/*
+     * 表示数据区的长度(tail - data)与分片结构体数据区的长度之和。
+	 * 其实这个len中数据区长度是个有效长度，
+	 * 当缓冲区从一个网络分层移动到下一个网络分层时，该值会发生变化，因为在协议栈中向上层移动时报头会被丢弃
+	 * 向下层移动时报头会添加，len也会把协议报头算在内，与"数据预留和对齐"操作
+	 * 因为不删除协议头，所以只计算有效协议头和包内容。如：当在L3时，不会计算L2的协议头长度;
+     */
 	unsigned int len,
-		data_len;
-	__u16 mac_len,
-		hdr_len;
+		data_len;  // 表示分片结构体数据区的长度，所以len = (tail - data) + data_len
+	__u16 mac_len, // mac报头的长度
+		hdr_len;   // 用于clone时，表示clone的skb的头长度
 
 	/* Following fields are _not_ copied in __copy_skb_header()
 	 * Note that queue_mapping is here mostly to fill a hole.
 	 */
 	kmemcheck_bitfield_begin(flags1);
-	__u16 queue_mapping;
-	__u8 cloned : 1,
+	__u16 queue_mapping; // 多设备的队列映射
+	__u8 cloned : 1,	 // 为1表示该结构被克隆，或者自己是个克隆的结构体；
+						 // 同理被克隆时，自身skb和克隆skb的cloned都要置 1
+
+		//payload是否被单独引用，不存在协议首部，如果被引用，则不能修改协议首部，
+		//不能通过skb->data来访问协议首部
 		nohdr : 1,
-		fclone : 2,
+		//当前克隆状态
+		//0 -- SKB_FCLONE_UNAVAILABLE - skb未被克隆
+		//1 -- SKB_FCLONE_ORIG -  在skbuff_fclone_cache分配的父skb，可以被克隆
+		//2 -- SKB_FCLONE_CLONE - 在skbuff_fclone_cache分配的子skb，从父skb克隆得到
+		fclone : 2, // 这个成员字段是克隆时使用，表示克隆状态
 		peeked : 1,
-		head_frag : 1,
+		head_frag : 1, // 通过page_fragment_alloc分配内存
 		xmit_more : 1,
 		pfmemalloc : 1;
 	kmemcheck_bitfield_end(flags1);
@@ -635,6 +656,22 @@ struct sk_buff
 #define PKT_TYPE_OFFSET() offsetof(struct sk_buff, __pkt_type_offset)
 
 	__u8 __pkt_type_offset[0];
+
+	/*
+	 * 在include/uapi/linux/if_packet.h中进行定义
+     *此字段根据l2的目的地址进行划分
+     *PACKET_HOST -- mac地址与接收设备mac地址相等，说明是发给该主机的
+     *PACKET_BROADCAST -- mac地址是接收设备的广播地址
+     *PACKET_MULTICAST -- mac地址接收改设备注册的多播地址之一
+     *PACKET_OTHERHOST -- mac地址不属于接收设备的地址，启用转发则转发，否则丢弃
+     *PACKET_OUTGOING -- 数据包将被发出，用到这个标记的功能包括decnet，或者为每个
+     *网络tab都复制一份发出包的函数
+     *PACKET_LOOPBACK -- 数据包发往回环设备，有此标识，处理回环设备时，
+     *可以跳过一些真实设备所需的操作
+     *PACKET_USER -- 发送到用户空间，netlink使用
+     *PACKET_KERNEL -- 发送到内核空间，netlink使用
+     *PACKET_FASTROUTE -- 未使用
+     */
 	__u8 pkt_type : 3;
 	__u8 ignore_df : 1;
 	__u8 nfctinfo : 3;
@@ -679,7 +716,7 @@ struct sk_buff
 			__u16 csum_offset;
 		};
 	};
-	__u32 priority;
+	__u32 priority; // 优先级，主要用于QOS
 	int skb_iif;
 	__u32 hash;
 	__be16 vlan_proto;
