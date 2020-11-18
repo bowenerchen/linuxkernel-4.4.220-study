@@ -17,7 +17,7 @@
                 "CONFIG_AS_SHA256_NI=1",
                 "CONFIG_AS_ADX=1"
             ],
-            "compilerPath": "/home/mygcc/bin/gcc",
+            "compilerPath": "/usr/local/bin/gcc",
             "includePath": [
                 "${workspaceFolder}/include/",
                 "${workspaceFolder}/include/uapi/",
@@ -30,8 +30,8 @@
                 "/usr/include"
             ],
             "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "gcc-x64",
             "forcedInclude": [
                 "${workspaceFolder}/include/linux/kconfig.h",
                 "${workspaceFolder}/include/linux/compiler-clang.h",

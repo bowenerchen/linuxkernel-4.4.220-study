@@ -82,7 +82,11 @@
         "**/.cocciconfig": true,
         "**/.git*": true,
         "**/*.orig": true,
-        "**/*.rej": true
+        "**/*.rej": true,
+        "**/.tmp_versions": true,
+        "CREDITS": true,
+        "COPYING": true,
+        "MAINTAINERS": true
     },
     "files.associations": {
         "slab.h": "c"
