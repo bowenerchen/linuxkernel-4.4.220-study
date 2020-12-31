@@ -86,11 +86,20 @@
         "**/.tmp_versions": true,
         "CREDITS": true,
         "COPYING": true,
-        "MAINTAINERS": true
+        "MAINTAINERS": true,
+        "**/GPATH": true,
+        "**/GRTAGS": true,
+        "**/GTAGS": true
     },
     "files.associations": {
         "slab.h": "c"
     },
     "C_Cpp.formatting": "Default",
     "go.inferGopath": false,
+    "gnuGlobal.globalExecutable": "/usr/bin/global",
+    "gnuGlobal.gtagsExecutable": "/usr/bin/gtags",
+    "gnuGlobal.encoding": "utf-8",
+    "gnuGlobal.autoUpdate": "Enabled",
+    "gnuGlobal.completion": "Enabled",
+    "gnuGlobal.gtagSkipSymlink": "All"
 }
