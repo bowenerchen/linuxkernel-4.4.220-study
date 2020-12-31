@@ -96,10 +96,10 @@
     },
     "C_Cpp.formatting": "Default",
     "go.inferGopath": false,
-    "gnuGlobal.globalExecutable": "/usr/bin/global",
-    "gnuGlobal.gtagsExecutable": "/usr/bin/gtags",
+    "gnuGlobal.globalExecutable": "/usr/local/bin/global",
+    "gnuGlobal.gtagsExecutable": "/usr/local/bin/gtags",
     "gnuGlobal.encoding": "utf-8",
-    "gnuGlobal.autoUpdate": "Enabled",
+    "gnuGlobal.autoUpdate": "Disabled",
     "gnuGlobal.completion": "Enabled",
     "gnuGlobal.gtagSkipSymlink": "All"
 }
