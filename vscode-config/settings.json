@@ -82,11 +82,24 @@
         "**/.cocciconfig": true,
         "**/.git*": true,
         "**/*.orig": true,
-        "**/*.rej": true
+        "**/*.rej": true,
+        "**/.tmp_versions": true,
+        "CREDITS": true,
+        "COPYING": true,
+        "MAINTAINERS": true,
+        "**/GPATH": true,
+        "**/GRTAGS": true,
+        "**/GTAGS": true
     },
     "files.associations": {
         "slab.h": "c"
     },
     "C_Cpp.formatting": "Default",
     "go.inferGopath": false,
+    "gnuGlobal.globalExecutable": "/usr/local/bin/global",
+    "gnuGlobal.gtagsExecutable": "/usr/local/bin/gtags",
+    "gnuGlobal.encoding": "utf-8",
+    "gnuGlobal.autoUpdate": "Disabled",
+    "gnuGlobal.completion": "Enabled",
+    "gnuGlobal.gtagSkipSymlink": "All"
 }
