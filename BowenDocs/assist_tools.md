@@ -7,3 +7,5 @@
 - [内核源码下载 mirrors.ustc.edu.cn](http://mirrors.ustc.edu.cn/kernel.org/linux/kernel/)
 
 - [kernel hacking 内核子系统](https://kernelnewbies.org/Documentation/Subsystems)
+
+- [gcc跨平台编译工具](https://releases.linaro.org/components/toolchain/binaries/)
