@@ -131,4 +131,3 @@ vmlinux
 *.order
 *.ko
 *.o
-*/.vscode
