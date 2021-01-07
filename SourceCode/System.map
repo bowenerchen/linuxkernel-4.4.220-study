@@ -39325,8 +39325,8 @@ c0678c50 T __initramfs_start
 c0678c50 t __irf_start
 c0678c50 T __security_initcall_end
 c0678c50 T __security_initcall_start
-c077e832 t __irf_end
-c077e838 T __initramfs_size
+c077e855 t __irf_end
+c077e858 T __initramfs_size
 c077f000 D __per_cpu_load
 c077f000 D __per_cpu_start
 c077f000 D __per_cpu_user_mapped_end
