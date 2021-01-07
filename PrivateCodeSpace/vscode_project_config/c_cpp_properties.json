@@ -24,9 +24,8 @@
                 "${workspaceFolder}/../../SourceCode/include/linux/compiler-intel.h",
                 "${workspaceFolder}/../../SourceCode/include/linux/intel-iommu.h"
             ],
-            "cStandard": "gnu11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64"
+            "intelliSenseMode": "gcc-arm",
+            "compilerPath": "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/arm-linux-gnueabi-gcc"
         }
     ],
     "version": 4
