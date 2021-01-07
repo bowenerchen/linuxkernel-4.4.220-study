@@ -125,3 +125,10 @@ all.config
 *.kdev4
 
 vmlinux
+*.mod.o
+*.mod.c
+*.symvers
+*.order
+*.ko
+*.o
+
