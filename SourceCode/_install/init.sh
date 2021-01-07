@@ -16,6 +16,7 @@ echo "mkdir -p /dev/pts" >> rcS
 echo "mount -t devpts devpts /dev/pts" >> rcS
 echo "echo /sbin/mdev > /proc/sys/kernel/hotplug" >> rcS
 echo "mdev -s" >> rcS
+echo "mount -t 9p -o trans=virtio kmod_mount /mnt" >> rcS
 chmod +x rcS
 
 cd ..
