@@ -131,5 +131,5 @@ vmlinux
 *.order
 *.ko
 *.o
-SourceCode/System.map
-SourceCode/include/generated/compiler.h
+*.map
+./SourceCode/include/generated/*
