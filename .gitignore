@@ -131,3 +131,5 @@ vmlinux
 *.order
 *.ko
 *.o
+*/System.map
+*/compiler.h
