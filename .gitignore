@@ -132,4 +132,4 @@ vmlinux
 *.ko
 *.o
 *.map
-./SourceCode/include/generated/*
+SourceCode/include/generated/compile.h
