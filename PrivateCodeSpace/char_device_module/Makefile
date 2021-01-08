@@ -22,5 +22,5 @@ char_test:
 	${CC} test.c -o char_device_test --static
 
 clean:
-	rm -rf *.o *.mod.c *.ko *.symvers *.order *.marker *~ .*.ko.cmd .*.o.cmd .tmp_versions cham_device_test
+	rm -rf *.o *.mod.c *.ko *.symvers *.order *.marker *~ .*.ko.cmd .*.o.cmd .tmp_versions char_device_test
 
