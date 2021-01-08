@@ -18,11 +18,7 @@
             ],
             "forcedInclude": [
                 "${workspaceFolder}/../../SourceCode/include/linux/kconfig.h",
-                "${workspaceFolder}/../../SourceCode/include/linux/compiler-clang.h",
-                "${workspaceFolder}/../../SourceCode/include/linux/compiler-gcc.h",
-                "${workspaceFolder}/../../SourceCode/include/linux/compiler.h",
-                "${workspaceFolder}/../../SourceCode/include/linux/compiler-intel.h",
-                "${workspaceFolder}/../../SourceCode/include/linux/intel-iommu.h"
+                "${workspaceFolder}/../../SourceCode/arch/arm/include/asm/unified.h"
             ],
             "intelliSenseMode": "gcc-arm",
             "compilerPath": "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/arm-linux-gnueabi-gcc"
