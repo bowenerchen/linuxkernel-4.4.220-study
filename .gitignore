@@ -133,5 +133,5 @@ vmlinux
 *.o
 *.map
 SourceCode/include/generated/compile.h
-PrivateCodeSpace/char_device_module/test
-SourceCode/kmodules/test
+PrivateCodeSpace/char_device_module/char_device_test
+SourceCode/kmodules/*

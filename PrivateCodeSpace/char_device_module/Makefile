@@ -19,8 +19,8 @@ char_module:
 char_test:
 	@echo "<------------------->"
 	@echo "compile test.c for user test tool"
-	${CC} test.c -o test --static
+	${CC} test.c -o char_device_test --static
 
 clean:
-	rm -rf *.o *.mod.c *.ko *.symvers *.order *.marker *~ .*.ko.cmd .*.o.cmd .tmp_versions test
+	rm -rf *.o *.mod.c *.ko *.symvers *.order *.marker *~ .*.ko.cmd .*.o.cmd .tmp_versions cham_device_test
 
