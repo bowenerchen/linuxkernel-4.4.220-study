@@ -1,19 +1,26 @@
 # obj-m = $(target).o 
 # $(target)-objs := file1.o file2.o file3.o ...
 
-ifneq ($(KERNELRELEASE),)
-	obj-m += char_device.o
-	char_device-objs := main.o
+obj-m += char_device.o
+char_device-objs := main.o
+PWD := $(shell pwd)
+KDIR := ../../SourceCode/
+CC := arm-linux-gnueabi-gcc
 
-else
-	PWD := $(shell pwd)
-    KVER := $(shell uname -r)
-    KDIR := ../../SourceCode/
+all: char_module char_test
 
-all:
+.PHONY: char_module
+char_module:
+	@echo "<------------------->"
+	@echo "compile main.c for kernel char device module"
 	$(MAKE) -C $(KDIR) M=$(PWD) modules;
 
-clean:
-	rm -rf *.o *.mod.c *.ko *.symvers *.order *.marker *~ .*.ko.cmd .*.o.cmd .tmp_versions
+.PHONY: char_test
+char_test:
+	@echo "<------------------->"
+	@echo "compile test.c for user test tool"
+	${CC} test.c -o test --static
 
-endif
+clean:
+	rm -rf *.o *.mod.c *.ko *.symvers *.order *.marker *~ .*.ko.cmd .*.o.cmd .tmp_versions test
+
