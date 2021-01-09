@@ -124,5 +124,4 @@ module_exit(simple_char_exit);
 
 MODULE_AUTHOR("bowenerchen");
 MODULE_LICENSE("GPL v2");
-MODULE_VERSION("bowenerchen-v1.0");
 MODULE_DESCRIPTION("simple character device");
