@@ -20,6 +20,9 @@
  * static ssize_t demodrv_read()
  * static ssize_t demodrv_write()
  * 以上4个函数，为自定义实现的与用户态交互的逻辑
+ * 
+ * cat /proc/devices:
+ * 252 my_demo_dev
  * ***/
 
 #define DEMO_NAME "my_demo_dev"
