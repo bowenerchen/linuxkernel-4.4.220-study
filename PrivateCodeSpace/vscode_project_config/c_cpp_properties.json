@@ -11,17 +11,23 @@
                 "${workspaceFolder}/../../SourceCode/arch/arm/include/uapi",
                 "${workspaceFolder}/../../SourceCode/arch/arm/include/generated/",
                 "${workspaceFolder}/../../SourceCode/arch/arm/include/generated/uapi",
-                "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/include",
-                "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/include-fixed",
-                "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/../../../../arm-linux-gnueabi/include",
-                "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../arm-linux-gnueabi/libc/usr/include"
+                "/usr/local/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/7.5.0/include",
+                "/usr/local/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/7.5.0/include-fixed",
+                "/usr/local/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/7.5.0/../../../../arm-linux-gnueabi/include",
+                "/usr/local/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabi/bin/../arm-linux-gnueabi/libc/usr/include"
             ],
             "forcedInclude": [
                 "${workspaceFolder}/../../SourceCode/include/linux/kconfig.h",
                 "${workspaceFolder}/../../SourceCode/arch/arm/include/asm/unified.h"
             ],
+            "defines": [
+                "__KERNEL__",
+                "__ASSEMBLY__",
+                "CC_HAVE_ASM_GOTO",
+                "__LINUX_ARM_ARCH__=7"
+            ],
             "intelliSenseMode": "gcc-arm",
-            "compilerPath": "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/arm-linux-gnueabi-gcc"
+            "compilerPath": "/usr/local/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabi//bin/arm-linux-gnueabi-gcc"
         }
     ],
     "version": 4
