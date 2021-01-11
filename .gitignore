@@ -128,3 +128,14 @@ all.config
 GPATH
 GRTAGS
 GTAGS
+vmlinux
+*.mod.o
+*.mod.c
+*.symvers
+*.order
+*.ko
+*.o
+*.map
+SourceCode/include/generated/compile.h
+PrivateCodeSpace/char_device_module/char_device_test
+SourceCode/kmodules/*
