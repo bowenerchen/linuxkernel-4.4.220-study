@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <string.h>
 
-#define DEMO_DEV_NAME "/dev/my_demo_char_dev"
+#define DEMO_DEV_NAME "/dev/my_demo_misc_dev"
 
 int main()
 {
