@@ -12,7 +12,7 @@
  * cdev_add() -- 把一个字符设备添加到系统中，通常在驱动程序probe函数里会调用该接口来注册一个字符设备
  * cdev_del() -- 从系统中删除一个字符设备，通常在驱动程序的卸载函数中会调用该接口
  * alloc_chrdev_region() -- 自动为设备分配主设备号，避免主设备号冲突
- * unregister_chedev_region() -- 归还设备的主设备号给系统
+ * unregister_chrdev_region() -- 归还设备的主设备号给系统
  * 
  * 用户自定义实现：
  * static int demodrv_open()
@@ -25,7 +25,7 @@
  * 252 my_demo_dev
  * ***/
 
-#define DEMO_NAME "my_demo_dev"
+#define DEMO_NAME "my_demo_char_dev"
 static dev_t dev;              // 设备号
 static struct cdev *demo_cdev; // 指向设备实例的指针
 static signed count = 1;       // 同属一个主设备号的次设备号的个数，这里初始化为1

@@ -3,7 +3,7 @@
 qemu-system-arm \
 -M vexpress-a9 \
 -smp 2 \
--m 256M \
+-m 128M \
 -kernel arch/arm/boot/zImage \
 -append "rdinit=/linuxrc console=ttyAMA0 loglevel=8 slub_debug kmemleak=on" \
 -dtb arch/arm/boot/dts/vexpress-v2p-ca9.dtb \
