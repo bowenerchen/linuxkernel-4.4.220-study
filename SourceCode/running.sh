@@ -1,5 +1,9 @@
 #! /usr/bin/bash
 
+# 解决audio驱动错误问题
+# 这里随便导入一个audio的驱动模块
+export QEMU_AUDIO_DRV=wav
+
 qemu-system-arm \
 -M vexpress-a9 \
 -smp 2 \
