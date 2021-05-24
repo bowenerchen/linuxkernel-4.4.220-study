@@ -136,9 +136,8 @@ vmlinux
 *.ko
 *.o
 *.map
-SourceCode/include/generated/compile.h
+SourceCode/include/generated/*
 PrivateCodeSpace/char_device_module/char_device_test
 SourceCode/kmodules/*
-SourceCode/_install/etc/fstab
-SourceCode/_install/etc/init.d/rcS
-SourceCode/_install/etc/inittab
+SourceCode/_install/etc/*
+SourceCode/_install/etc/init.d/*
