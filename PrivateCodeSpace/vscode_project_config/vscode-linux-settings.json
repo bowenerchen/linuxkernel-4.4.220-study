@@ -1,0 +1,156 @@
+{
+    "search.showLineNumbers": true,
+    "remote.SSH.showLoginTerminal": true,
+    "editor.formatOnSave": true,
+    "editor.fontSize": 18,
+    "go.inferGopath": true,
+    "go.docsTool": "gogetdoc",
+    "go.autocompleteUnimportedPackages": true,
+    "go.gocodePackageLookupMode": "go",
+    "go.gotoSymbol.includeImports": true,
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
+    "go.useLanguageServer": true,
+    "go.goroot": "/usr/local/go",
+    "go.gopath": "~/Public/go",
+    "go.lintTool": "golangci-lint",
+    "go.lintOnSave": "package",
+    "go.gotoSymbol.includeGoroot": true,
+    "go.gocodeAutoBuild": true,
+    "go.testFlags": [
+        "-cover",
+        "-v",
+        "-count=1"
+    ],
+    "go.installDependenciesWhenBuilding": true,
+    "go.liveErrors": {
+        "enabled": true,
+        "delay": 500
+    },
+    "go.languageServerFlags": [
+        "-rpc.trace", // for more detailed debug logging
+        "serve",
+        "--debug=localhost:6060", // to investigate memory usage, see profiles
+    ],
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+        // Optional: Disable snippets, as they conflict with completion ranking.
+        "editor.snippetSuggestions": "none",
+    },
+    "[go.mod]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+    },
+    "gopls": {
+        // Add parameter placeholders when completing a function.
+        "usePlaceholders": true,
+        // If true, enable additional analyses with staticcheck.
+        // Warning: This will significantly increase memory usage.
+        "staticcheck": false,
+    },
+    "files.autoSave": "onFocusChange",
+    "files.autoGuessEncoding": true,
+    "files.encoding": "utf8",
+    "files.maxMemoryForLargeFilesMB": 1024,
+    "cmake.saveBeforeBuild": true,
+    "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Atom One Dark",
+    "editor.formatOnPaste": true,
+    "editor.selectionHighlight": true,
+    "editor.cursorStyle": "underline",
+    "workbench.colorCustomizations": {
+        "editor.selectionBackground": "#9c281f",
+        "editor.selectionHighlightBackground": "#545a02"
+    },
+    "editor.tokenColorCustomizations": {
+        "comments": "#009c00" // 注释
+    },
+    "debug.console.fontSize": 17,
+    "markdown.preview.fontSize": 16,
+    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.cursorStyle": "underline",
+    "workbench.tree.indent": 16,
+    "terminal.explorerKind": "external",
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.matchBrackets": "always",
+    "workbench.editor.enablePreview": false,
+    "vim.hlsearch": true,
+    "vim.searchHighlightColor": "green",
+    "workbench.startupEditor": "newUntitledFile",
+    "activitusbar.views": [
+        {
+            "name": "explorer",
+            "codicon": "files"
+        },
+        {
+            "name": "search",
+            "codicon": "search"
+        },
+        {
+            "name": "scm",
+            "codicon": "source-control"
+        },
+        {
+            "name": "debug",
+            "codicon": "debug-alt"
+        },
+        {
+            "name": "extensions",
+            "codicon": "extensions"
+        }
+    ],
+    "editor.columnSelection": false,
+    "cmake.configureOnOpen": false,
+    "git.autofetch": true,
+    "editor.wordWrap": "on",
+    "explorer.confirmDelete": false,
+    "workbench.tree.renderIndentGuides": "always",
+    "editor.renderWhitespace": "boundary",
+    "editor.codeActionsOnSave": null,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "workbench.iconTheme": "vscode-icons-mac",
+    "codespaces.accountProvider": "Uninitialized",
+    "window.zoomLevel": 0,
+    "workbench.statusBar.visible": true,
+    "pasteImage.basePath": "${currentFileDir}/",
+    "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss-img",
+    "pasteImage.path": "${currentFileDir}/asserts/",
+    "python.analysis.extraPaths": [
+        "./src",
+        "./modules",
+        "/usr/lib/python3.6/site-packages/"
+    ],
+    "python.analysis.symbolsHierarchyDepthLimit": 10,
+    "python.pythonPath": "/usr/bin/python3",
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "python.analysis.completeFunctionParens": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=240"
+    ],
+    "python.analysis.typeCheckingMode": "basic",
+    "python.linting.flake8Enabled": true,
+    "python.autoComplete.addBrackets": true,
+    "python.languageServer": "Pylance",
+    "python.autoComplete.showAdvancedMembers": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoSearchPaths": true,
+    "remote.autoForwardPortsSource": "output",
+    "C_Cpp.codeFolding": "Enabled",
+    "C_Cpp.autocomplete": "Default",
+    "C_Cpp.clang_format_sortIncludes": false,
+    "C_Cpp.intelliSenseMemoryLimit": 2048,
+    "C_Cpp.clang_format_fallbackStyle": "LLVM",
+    "C_Cpp.clang_format_style": "{BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4,TabWidth: 4, AllowShortIfStatementsOnASingleLine: true, ColumnLimit: 0}"
+}
