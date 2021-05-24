@@ -1,5 +1,11 @@
 #! /usr/bin/bash
 
+rm ./_install/etc -rf
+rm ./_install/dev -rf
+rm ./_install/mnt -rf
+
+cd ./_install/ && bash init.sh && cd -
+
 # 解决audio驱动错误问题
 # 这里随便导入一个audio的驱动模块
 export QEMU_AUDIO_DRV=wav
