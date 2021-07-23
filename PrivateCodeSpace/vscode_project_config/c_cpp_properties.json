@@ -39,7 +39,8 @@
                 // To stop vscode from complaining about undefined KBUILD_MODNAME identifier, 
                 // just add a dummy definition to your c_cpp_properties.json file in the "defines" section
                 "KBUILD_MODNAME=\"1\"",
-                "CONFIG_NETFILTER"
+                "CONFIG_NETFILTER",
+                "__LINUX_ARM_ARCH__=7"
             ],
             "intelliSenseMode": "gcc-arm",
             "compilerPath": "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/arm-linux-gnueabi-gcc"
