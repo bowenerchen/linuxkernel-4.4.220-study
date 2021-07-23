@@ -91,4 +91,11 @@
     },
     "C_Cpp.formatting": "Default",
     "go.inferGopath": false,
+    "C_Cpp.autocomplete": "Default",
+    "[cpp]": {
+        "editor.quickSuggestions": true
+    },
+    "[c]": {
+        "editor.quickSuggestions": true
+    }
 }
