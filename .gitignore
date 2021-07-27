@@ -143,3 +143,4 @@ PrivateCodeSpace/char_device_module/char_device_test
 SourceCode/kmodules/*
 SourceCode/_install/etc/*
 SourceCode/_install/etc/init.d/*
+*_test
