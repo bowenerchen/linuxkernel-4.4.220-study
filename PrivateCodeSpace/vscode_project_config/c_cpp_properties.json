@@ -16,10 +16,6 @@
                 "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/../../../../arm-linux-gnueabi/include",
                 "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../arm-linux-gnueabi/libc/usr/include"
             ],
-            "forcedInclude": [
-                "${workspaceFolder}/../../SourceCode/include/linux/kconfig.h",
-                "${workspaceFolder}/../../SourceCode/arch/arm/include/asm/unified.h"
-            ],
             "defines": [
                 "__GNUC__",
                 "__KERNEL__",
@@ -41,6 +37,10 @@
                 "KBUILD_MODNAME=\"1\"",
                 "CONFIG_NETFILTER",
                 "__LINUX_ARM_ARCH__=7"
+            ],
+            "forcedInclude": [
+                "${workspaceFolder}/include/linux/kconfig.h",
+                "${workspaceFolder}/arch/arm/include/asm/unified.h"
             ],
             "intelliSenseMode": "gcc-arm",
             "compilerPath": "/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/arm-linux-gnueabi-gcc"

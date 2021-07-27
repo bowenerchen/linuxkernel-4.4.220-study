@@ -83,19 +83,79 @@
         "**/.git*": true,
         "**/*.orig": true,
         "**/*.rej": true,
-        "**/*.symvers": true,
-        "**/*.order": true
+        "**/.tmp_versions": true,
+        "CREDITS": true,
+        "COPYING": true,
+        "MAINTAINERS": true,
+        "**/GPATH": true,
+        "**/GRTAGS": true,
+        "**/GTAGS": true
     },
     "files.associations": {
         "slab.h": "c"
     },
     "C_Cpp.formatting": "Default",
     "go.inferGopath": false,
+    "gnuGlobal.encoding": "utf-8",
+    "gnuGlobal.autoUpdate": "Disabled",
+    "gnuGlobal.completion": "Enabled",
+    "gnuGlobal.gtagSkipSymlink": "All",
     "C_Cpp.autocomplete": "Default",
-    "[cpp]": {
-        "editor.quickSuggestions": true
-    },
+    "C_Cpp.errorSquiggles": "Enabled",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.intelliSenseEngine": "Default",
     "[c]": {
-        "editor.quickSuggestions": true
-    }
+        "editor.quickSuggestions": true,
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
+        "editor.renderIndentGuides": true,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": true,
+        "editor.tabSize": 4
+    },
+    "[cpp]": {
+        "editor.quickSuggestions": true,
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
+        "editor.renderIndentGuides": true,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": true,
+        "editor.tabSize": 4
+    },
+    "clang.executable": "/usr/bin/clang",
+    "clang.cxxflags": [
+        "-std=c++11",
+        "-I${workspaceRoot}\\include",
+        "-I${cwd}",
+        "-I${workspaceFolder}/**",
+        "-I${workspaceFolder}/include",
+        "-I${workspaceFolder}/include/uapi/",
+        "-I${workspaceFolder}/include/generated/uapi/",
+        "-I${workspaceFolder}/arch/arm/include/",
+        "-I${workspaceFolder}/arch/arm/include/uapi",
+        "-I${workspaceFolder}/arch/arm/include/generated/",
+        "-I${workspaceFolder}/arch/arm/include/generated/uapi",
+        "-I/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/include",
+        "-I/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/include-fixed",
+        "-I/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/../../../../arm-linux-gnueabi/include",
+        "-I/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../arm-linux-gnueabi/libc/usr/include"
+    ],
+    "clang.cflags": [
+        "-std=c99",
+        "-I${workspaceRoot}\\include",
+        "-I${cwd}",
+        "-I${workspaceFolder}/**",
+        "-I${workspaceFolder}/include",
+        "-I${workspaceFolder}/include/uapi/",
+        "-I${workspaceFolder}/include/generated/uapi/",
+        "-I${workspaceFolder}/arch/arm/include/",
+        "-I${workspaceFolder}/arch/arm/include/uapi",
+        "-I${workspaceFolder}/arch/arm/include/generated/",
+        "-I${workspaceFolder}/arch/arm/include/generated/uapi",
+        "-I/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/include",
+        "-I/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/include-fixed",
+        "-I/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../lib/gcc/arm-linux-gnueabi/5.5.0/../../../../arm-linux-gnueabi/include",
+        "-I/usr/local/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabi/bin/../arm-linux-gnueabi/libc/usr/include"
+    ]
 }
