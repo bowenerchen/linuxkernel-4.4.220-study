@@ -34,7 +34,9 @@
         "**/arch/metag": true,
         "**/arch/mips": true,
         "**/arch/openrisc": true,
-        "**/arch/tile": true
+        "**/arch/tile": true,
+        "**/arch/arm64": true,
+        "**/arch/x86": true
     },
     "files.exclude": {
         "**/.git": true,
@@ -106,6 +108,8 @@
         "**/arch/mips": true,
         "**/arch/openrisc": true,
         "**/arch/tile": true
+        "**/arch/arm64": true,
+        "**/arch/x86": true
     },
     "files.associations": {
         "slab.h": "c"
