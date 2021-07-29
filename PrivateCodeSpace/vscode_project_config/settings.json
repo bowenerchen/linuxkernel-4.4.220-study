@@ -26,7 +26,15 @@
         "**/arch/sh": true,
         "**/arch/um": true,
         "**/arch/unicore32": true,
-        "**/arch/xtensa": true
+        "**/arch/xtensa": true,
+        "**/arch/avr32": true,
+        "**/arch/blackfin": true,
+        "**/arch/cris": true,
+        "**/arch/frv": true,
+        "**/arch/metag": true,
+        "**/arch/mips": true,
+        "**/arch/openrisc": true,
+        "**/arch/tile": true
     },
     "files.exclude": {
         "**/.git": true,
@@ -89,7 +97,15 @@
         "MAINTAINERS": true,
         "**/GPATH": true,
         "**/GRTAGS": true,
-        "**/GTAGS": true
+        "**/GTAGS": true,
+        "**/arch/avr32": true,
+        "**/arch/blackfin": true,
+        "**/arch/cris": true,
+        "**/arch/frv": true,
+        "**/arch/metag": true,
+        "**/arch/mips": true,
+        "**/arch/openrisc": true,
+        "**/arch/tile": true
     },
     "files.associations": {
         "slab.h": "c"
